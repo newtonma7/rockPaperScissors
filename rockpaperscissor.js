@@ -9,13 +9,11 @@ let getComputerChoice = () =>{
     : 'scissors'
 }
 
-let getHumanChoice = () => {
-    ans = prompt('rock, paper, or scissors');
+let getHumanChoice = (ans) => {
 
     return ans.toLowerCase() === 'rock' ? 'rock'
     : ans.toLowerCase() === 'paper' ? 'paper'
-    : ans.toLowerCase() === ' scissors' ? 'scissors'
-    : console.log('Please enter a valid input');
+    : 'scissors';
 }
 
 // is there a way to optimize this logic? maybe use numbers instead
@@ -55,8 +53,18 @@ function playGame(){
     }
 }
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
+const rockBtn = document.querySelector("button");
+const paperBtn = document.querySelector("button");
+const scissorsBtn = document.querySelector("button");
 
-playGame();
+rockBtn.addEventListener("click", playRound(getHumanChoice('rock'),getComputerChoice()));
+paperBtn.addEventListener("click", playRound(getHumanChoice('paper'),getComputerChoice()));
+scissorsBtn.addEventListener("click", playRound(getHumanChoice('scissors'),getComputerChoice()));
+
+const winnerH1 = document.querySelector("h1");
+const scoreH1 = document.querySelector("h1");
+
+if(humanScore == 5){
+
+}
 
