@@ -52,7 +52,18 @@ function playRound(human, computer){
     }
 
     if(humanScore == 5){
-
+        welcome.textContent = 'You Won!';
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        endRound();
+    }
+    if(computerScore == 5){
+        welcome.textContent = 'You Lost...';
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+        endRound();
     }
 }
 
@@ -76,4 +87,29 @@ scissorsBtn.addEventListener("click", () => {
     playRound(getHumanChoice('scissors'),getComputerChoice())
 });
 
+function endRound(){
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = 'Play Again?';
+    playAgainButton.id = 'play-again';
+    playAgainButton.className = 'button-blue'
 
+    
+    playAgainButton.addEventListener("click", () => {
+        resetGame()
+    })
+    buttons.appendChild(playAgainButton);
+}
+
+function resetGame(){
+    humanScore = 0
+    computerScore = 0
+    const remButton = document.getElementById('play-again');
+    if(remButton){
+        remButton.remove();
+    }
+    score.textContent = humanScore + " - " + computerScore;
+    welcome.textContent = 'Click to play!'
+    rockBtn.disabled = false;
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+}
